@@ -1,3 +1,36 @@
+/*-- kill other connections
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'spectacle_theater' AND pid <> pg_backend_pid();
+-- (re)create the database
+DROP DATABASE IF EXISTS spectacle_theater;
+CREATE DATABASE spectacle_theater;
+-- connect via psql
+\c spectacle_theater
+
+-- database configuration
+SET statement_timeout
+= 0;
+SET lock_timeout
+= 0;
+SET client_encoding
+= 'UTF8';
+SET standard_conforming_strings
+= on;
+SET check_function_bodies
+= false;
+SET client_min_messages
+= warning;
+SET default_tablespace
+= '';
+SET default_with_oids
+= false;*/
+
+
+---
+--- CREATE tables
+---
+
 CREATE TABLE events(
 	event_id SERIAL,
 	show_time TIMESTAMP,
